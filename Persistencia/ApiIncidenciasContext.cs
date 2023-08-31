@@ -1,3 +1,4 @@
+using System.Reflection;
 using Dominio;
 using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -17,4 +18,10 @@ public class ApiIncidenciasContext : DbContext
     public DbSet<Salon> Salones { get; set; }
     public DbSet<TipoPersona> TipoPersonas { get; set; }
     public DbSet<TrainerSalon> TrainerSalones { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 }
