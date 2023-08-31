@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj": {}
+    "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj": {}
   },
   "projects": {
-    "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj": {
+    "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj",
+        "projectUniqueName": "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj",
         "projectName": "Seguridad",
-        "projectPath": "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj",
+        "projectPath": "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Incidencias-Tecnologicas\\Seguridad\\Seguridad.csproj",
         "packagesPath": "C:\\Users\\APT01-40\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Seguridad\\obj\\",
+        "outputPath": "c:\\Users\\APT01-40\\Incidencias-Tecnologicas\\Incidencias-Tecnologicas\\Seguridad\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\APT01-40\\AppData\\Roaming\\NuGet\\NuGet.Config"
