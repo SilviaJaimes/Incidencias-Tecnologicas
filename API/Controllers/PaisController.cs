@@ -72,9 +72,11 @@ public class PaisController : BaseApiController
         await unitofwork.SaveAsync();
         return paisDto;
     }
+
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+
     public async Task<IActionResult> Delete(int id){
         var pais = await unitofwork.Paises.GetByIdAsync(id);
         if(pais == null)
@@ -85,5 +87,4 @@ public class PaisController : BaseApiController
         await unitofwork.SaveAsync();
         return NoContent();
     }
-
 }

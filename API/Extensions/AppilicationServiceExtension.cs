@@ -1,5 +1,6 @@
 using Dominio.Interfaces;
 using Aplicacion.UnitOfWork;
+using AspNetCoreRateLimit;
 
 namespace API.Extensions;
 public static class AppilicationServiceExtension
@@ -20,4 +21,35 @@ public static class AppilicationServiceExtension
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
+
+    public static void ConfigureRateLimit(this IServiceCollection services)
+    {
+        services.AddMemoryCache();
+        services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+        services.AddInMemoryRateLimiting();
+        services.Configure<IpRateLimitOptions>(options =>
+        {
+            options.EnableEndpointRateLimiting = true;
+            options.StackBlockedRequests = false;
+            options.HttpStatusCode = 429;
+            options.RealIpHeader = "X-Real-IP";
+            options.GeneralRules = new List<RateLimitRule>
+            {
+                new RateLimitRule
+                {
+                    Endpoint = "*",
+                    Period = "10s",
+                    Limit = 2
+                }
+            };
+        });
+    }
+
+   /*  public static void ConfigureApiVersioning(this IServiceCollection services)
+    {
+        services.AddApiVersioning(options =>
+        {
+
+        });
+    } */
 }

@@ -44,7 +44,7 @@ public class CiudadController : BaseApiController
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-   public async Task<ActionResult<Ciudad>> Post(CiudadDto ciudadDto)
+    public async Task<ActionResult<Ciudad>> Post(CiudadDto ciudadDto)
     {
         var ciudad = this.mapper.Map<Ciudad>(ciudadDto);
         this.unitofwork.Ciudades.Add(ciudad);
@@ -56,6 +56,7 @@ public class CiudadController : BaseApiController
         ciudadDto.Id = ciudad.Id;
         return CreatedAtAction(nameof(Post), new {id = ciudadDto.Id}, ciudadDto);
     }
+
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -71,9 +72,11 @@ public class CiudadController : BaseApiController
         await unitofwork.SaveAsync();
         return ciudadDto;
     }
+
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+
     public async Task<IActionResult> Delete(int id){
         var ciudad = await unitofwork.Ciudades.GetByIdAsync(id);
         if(ciudad == null)
