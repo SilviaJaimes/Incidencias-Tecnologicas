@@ -4,18 +4,16 @@ using Dominio.Interfaces;
 using Persistencia;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aplicacion.Repository
-
+namespace Aplicacion.Repository;
+public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
-    {
-        private readonly ApiIncidenciasContext _context;
+    private readonly ApiIncidenciasContext _context;
 
-        public GenericRepository(ApiIncidenciasContext context)
-        {
-            _context = context;
-        }
-        public virtual void Add(T entity)
+    public GenericRepository(ApiIncidenciasContext context)
+    {
+        _context = context;
+    }
+    public virtual void Add(T entity)
     {
         _context.Set<T>().Add(entity);
     }
@@ -65,5 +63,15 @@ namespace Aplicacion.Repository
         _context.Set<T>()
             .Update(entity);
     }
+
+    public virtual async Task<(int totalRegistros, IEnumerable<T> registros)> GetAllAsync(int pageIndex, int pageSize, string _search)
+    {
+        var totalRegistros = await _context.Set<T>().CountAsync();
+        var registros = await _context.Set<T>()
+            .Skip((pageIndex - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (totalRegistros, registros);
     }
 }
